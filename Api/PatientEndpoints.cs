@@ -20,9 +20,6 @@ public static class PatientEndpoints
         group.MapGet("", GetAllPatients).WithName(nameof(GetAllPatients));
         group.MapGet("{id}", GetPatientById).WithName(nameof(GetPatientById));
         group.MapDelete("{id}", DeletePatient).WithName(nameof(DeletePatient));
-
-        group.MapPost("{patientId}/appointments", CreateAppointment).WithName(nameof(CreateAppointment));
-        group.MapGet("{patientId}/appointments", GetPatientAppointments).WithName(nameof(GetPatientAppointments));
     }
 
     public static async Task<IResult> CreatePatient(
@@ -60,23 +57,6 @@ public static class PatientEndpoints
         var query = new GetPatientByIdQuery(id);
         var patient = await handler.Handle(query, ct);
         return patient is not null ? Results.Ok(patient) : Results.NotFound();
-    }
-    public static async Task<IResult> CreateAppointment(
-        [FromBody] CreateAppointmentCommand command,
-        [FromServices] ICommandHandler<CreateAppointmentCommand, Appointment> handler,
-    CancellationToken ct)
-    {
-        var appointment = await handler.Handle(command, ct);
-        return Results.Ok(appointment);
-    }
-    public static async Task<IResult> GetPatientAppointments(
-        [FromRoute] Guid patientId,
-        [FromServices] IQueryHandler<GetPatientAppointmentsQuery, IEnumerable<Appointment>> handler,
-        CancellationToken ct)
-    {
-        var query = new GetPatientAppointmentsQuery(patientId);
-        var appointments = await handler.Handle(query, ct);
-        return Results.Ok(appointments);
     }
 }
 
