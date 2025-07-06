@@ -36,7 +36,7 @@ public static class PatientEndpoints
     {
         var command = new DeletePatientCommand(id);
         var result = await handler.Handle(command, ct);
-        return Results.Ok(result);
+        return result ? Results.NoContent() : Results.NotFound();
     }
 
     public static async Task<IResult> GetAllPatients(
@@ -54,7 +54,7 @@ public static class PatientEndpoints
     {
         var query = new GetPatientByIdQuery(id);
         var patient = await handler.Handle(query, ct);
-        return Results.Ok(patient);
+        return patient is not null ? Results.Ok(patient) : Results.NotFound();
     }
 }
 
