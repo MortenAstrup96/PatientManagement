@@ -1,8 +1,11 @@
+using Api;
 using Application;
 using Infrastructure;
+using SQLitePCL;
 
 var builder = WebApplication.CreateBuilder(args);
 
+Batteries.Init();
 builder.Services.AddOpenApi();
 
 builder.Services
@@ -11,11 +14,8 @@ builder.Services
 var app = builder.Build();
 
 
-app.MapGet("/patients", (CancellationToken ct) =>
-{
-    var patient = "Patient1";
-    return patient is null ? Results.NotFound() : Results.Ok(patient);
-});
+app.MapPatientEndpoints();
+app.MapAppointmentEndpoints();
 
 
 // Configure the HTTP request pipeline.
