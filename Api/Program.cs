@@ -13,10 +13,7 @@ builder.Services
     .AddInfrastructure();
 var app = builder.Build();
 
-
 app.MapPatientEndpoints();
-app.MapAppointmentEndpoints();
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
