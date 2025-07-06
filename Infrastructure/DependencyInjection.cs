@@ -1,5 +1,6 @@
 ﻿
 using Application.Interfaces;
+using Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure;
@@ -9,6 +10,7 @@ public static class DependencyInjection
     {
         services.AddSingleton<SQLiteDatabase>();
         services.AddTransient<IPatientRepository, PatientRepository>();
+        services.AddTransient<IAppointmentRepository, AppointmentRepository>();
         return services;
     }
 }

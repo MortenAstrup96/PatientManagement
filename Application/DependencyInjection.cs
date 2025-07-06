@@ -1,4 +1,6 @@
 ﻿
+using Application.Appointments.CreateAppointment;
+using Application.Appointments.GetPatientAppointments;
 using Application.Interfaces;
 using Application.Patients.CreatePatient;
 using Application.Patients.DeletePatient;
@@ -16,6 +18,9 @@ public static class DependencyInjection
         services.AddTransient<ICommandHandler<DeletePatientCommand, bool>, DeletePatientCommandHandler>();
         services.AddTransient<IQueryHandler<GetAllPatientsQuery, IEnumerable<Patient>>, GetAllPatientsQueryHandler>();
         services.AddTransient<IQueryHandler<GetPatientByIdQuery, Patient>, GetPatientByIdQueryHandler>();
+
+        services.AddTransient<ICommandHandler<CreateAppointmentCommand, Appointment>, CreateAppointmentCommandHandler>();
+        services.AddTransient<IQueryHandler<GetPatientAppointmentsQuery, IEnumerable<Appointment>>, GetPatientAppointmentsQueryHandler>();
         return services;
     }
 }

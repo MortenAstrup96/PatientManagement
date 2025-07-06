@@ -2,7 +2,7 @@
 using Domain;
 using Microsoft.Data.Sqlite;
 
-namespace Infrastructure;
+namespace Infrastructure.Repositories;
 class PatientRepository : IPatientRepository
 {
     private readonly SQLiteDatabase _database;
@@ -52,7 +52,7 @@ class PatientRepository : IPatientRepository
     public async Task<IEnumerable<Patient>> GetAllPatients(CancellationToken cancellationToken)
     {
         var command = new SqliteCommand("SELECT * FROM Patients", _database.GetConnection());
-        using var reader = command.ExecuteReader();
+        using var reader = await command.ExecuteReaderAsync();
         List<Patient> patients = new();
         if (reader.HasRows)
         {

@@ -35,10 +35,10 @@ public class SQLiteDatabase
                 Id TEXT PRIMARY KEY,
                 PatientId TEXT NOT NULL,
                 DateTime TEXT NOT NULL,
-                DentistId TEXT NOT NULL,
-                Treatment TEXT NOT NULL,
+                Duration INTEGER NOT NULL,
+                Dentist TEXT NOT NULL,
+                Treatment INTEGER NOT NULL,
                 FOREIGN KEY (PatientId) REFERENCES Patients(Id)
-                FOREIGN KEY (DentistId) REFERENCES Demtosts(Id)
             );
         ";
         command.ExecuteNonQuery();
