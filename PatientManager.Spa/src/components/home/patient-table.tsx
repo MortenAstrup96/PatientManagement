@@ -51,7 +51,7 @@ export default function PatientsTable({patients}: PatientsTableProps) {
           >
             <TableCell>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Avatar src={patient.imagePath} sx={{ mr: 2 }} />
+                <Avatar src={`data:image/jpeg;base64,${patient.photo}`} sx={{ mr: 2 }} />
                 <Typography>{patient.fullName}</Typography>
               </Box>
             </TableCell>

@@ -2,7 +2,7 @@ export type Patient = {
   id: string;
   fullName: string;
   address: string;
-  imagePath: string;
+  photo: string;
 }
 
 export type Appointment = {

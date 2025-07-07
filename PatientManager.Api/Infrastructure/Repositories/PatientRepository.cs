@@ -16,10 +16,11 @@ class PatientRepository : IPatientRepository
         try
         {
             var command = _database.GetConnection().CreateCommand();
-            command.CommandText = "INSERT INTO Patients (Id, FullName, Address) VALUES (@id, @name, @address);";
+            command.CommandText = "INSERT INTO Patients (Id, FullName, Address, Photo) VALUES (@id, @name, @address, @photo);";
             command.Parameters.AddWithValue("@id", patient.Id);
             command.Parameters.AddWithValue("@name", patient.FullName);
             command.Parameters.AddWithValue("@address", patient.Address);
+            command.Parameters.AddWithValue("@photo", patient.Photo);
             await command.ExecuteNonQueryAsync(cancellationToken);
 
             return patient;
@@ -56,9 +57,14 @@ class PatientRepository : IPatientRepository
         List<Patient> patients = new();
         if (reader.HasRows)
         {
-            while (reader.Read())
+            while (await reader.ReadAsync(cancellationToken))
             {
-                patients.Add(new Patient(reader.GetGuid(0), reader.GetString(1), reader.GetString(2)));
+                var id = reader.GetGuid(0);
+                var fullName = reader.GetString(1);
+                var address = reader.GetString(2);
+                var photo = reader.GetFieldValue<byte[]>(3);
+
+                patients.Add(new Patient(id, fullName, address, photo));
             }
         }
         return patients;
@@ -79,7 +85,8 @@ class PatientRepository : IPatientRepository
             return new Patient(
                 reader.GetGuid(0),
                 reader.GetString(1),
-                reader.GetString(2)
+                reader.GetString(2),
+                reader.GetFieldValue<byte[]>(3)
             );
         }
 

@@ -23,7 +23,8 @@ public class SQLiteDatabase
             CREATE TABLE Patients (
                 Id TEXT PRIMARY KEY,
                 FullName TEXT NOT NULL,
-                Address TEXT NOT NULL
+                Address TEXT NOT NULL,
+                Photo BLOB NOT NULL
             );
 
             CREATE TABLE Dentists (

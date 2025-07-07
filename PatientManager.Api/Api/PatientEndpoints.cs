@@ -1,5 +1,6 @@
 ﻿namespace Api;
 
+using Api.Dto;
 using Application.Appointments.CreateAppointment;
 using Application.Appointments.GetPatientAppointments;
 using Application.Interfaces;
@@ -28,7 +29,13 @@ public static class PatientEndpoints
         CancellationToken ct)
     {
         var patient = await handler.Handle(command, ct);
-        return Results.Ok(patient);
+
+        var patientResponse = new PatientResponse(
+            patient.Id,
+            patient.FullName,
+            patient.Address,
+            "data:image/jpeg;base64," + Convert.ToBase64String(patient.Photo));
+        return Results.Ok(patientResponse);
     }
 
     public static async Task<IResult> DeletePatient(
@@ -56,7 +63,14 @@ public static class PatientEndpoints
     {
         var query = new GetPatientByIdQuery(id);
         var patient = await handler.Handle(query, ct);
-        return patient is not null ? Results.Ok(patient) : Results.NotFound();
+
+        var patientResponse = new PatientResponse(
+            patient.Id, 
+            patient.FullName, 
+            patient.Address,
+            "data:image/jpeg;base64,"+Convert.ToBase64String(patient.Photo));
+
+        return patient is not null ? Results.Ok(patientResponse) : Results.NotFound();
     }
 }
 

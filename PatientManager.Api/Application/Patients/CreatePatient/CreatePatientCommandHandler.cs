@@ -8,6 +8,7 @@ public class CreatePatientCommandHandler(IPatientRepository patientRepository) :
 
     public async Task<Patient> Handle(CreatePatientCommand command, CancellationToken cancellationToken = default)
     {
-        return await _patientRepository.CreatePatientAsync(new Patient(command.FullName, command.Address), cancellationToken);
+        var photoData = Convert.FromBase64String(command.Photo);
+        return await _patientRepository.CreatePatientAsync(new Patient(command.FullName, command.Address, photoData), cancellationToken);
     }
 }

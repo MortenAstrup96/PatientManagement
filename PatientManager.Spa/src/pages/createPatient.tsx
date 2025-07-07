@@ -1,4 +1,12 @@
-import { Paper, FormControl, TextField, Box, Button, InputLabel, Input, Typography, Card } from "@mui/material";
+import {
+  FormControl,
+  TextField,
+  Box,
+  Button,
+  Typography,
+  Card,
+  Avatar,
+} from "@mui/material";
 import { useState } from "react";
 import { createPatient } from "../api/patients";
 import { useNavigate } from "react-router";
@@ -6,77 +14,99 @@ import { useNavigate } from "react-router";
 function CreatePatientPage() {
   const navigate = useNavigate();
 
-  const [fullName, setFullName] = useState<string>('');
-  const [address, setAddress] = useState<string>('');
-  const [imagePath, setImagePath] = useState<string>('');
+  const [fullName, setFullName] = useState<string>("");
+  const [address, setAddress] = useState<string>("");
+  const [photo, setPhoto] = useState<string>("");
   const [isSaving, setIsSaving] = useState<boolean>(false);
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setPhoto(reader.result?.toString().split(',')[1] as string);
+    };
+    reader.readAsDataURL(file);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
-    console.log({
-      fullName,
-      address,
-      imagePath,
-    });
 
-    const patient = await createPatient({ fullName, address, imagePath });
+    const patient = await createPatient({ fullName, address, photo });
     navigate(`/patient/${patient.id}`);
   };
 
   return (
-      <Box sx={{ px: 18, py: 6 }}>
-    <Card
-      component="form"
-      onSubmit={handleSubmit}
-      sx={{
-        py: 4,
-        px: 8,
-        minHeight: '60vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-    >
-    
-      <FormControl fullWidth sx={{ gap: 3 }}>
-        <Typography variant="h6">Create New Patient</Typography>
-        <TextField
-          required
-          id="fullname"
-          label="Full Name"
-          variant="outlined"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-        />
+    <Box sx={{ px: 18, py: 6 }}>
+      <Card
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          py: 4,
+          px: 8,
+          minHeight: "60vh",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <FormControl fullWidth sx={{ gap: 3 }}>
+          <Typography variant="h6">Create New Patient</Typography>
 
-        <TextField
-          required
-          id="address"
-          label="Address"
-          variant="outlined"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-        />
-
-        <Box>
-          <InputLabel htmlFor="photo">Photo</InputLabel>
-          <Input
+          <TextField
             required
-            id="photo"
-            type="file"
-            onChange={(e) => setImagePath('photo path')}
+            id="fullname"
+            label="Full Name"
+            variant="outlined"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
           />
-        </Box>
-      </FormControl>
 
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 4 }}>
-        <Button type="submit" variant="contained" loading={isSaving} size="large">
-          Save
-        </Button>
-      </Box>
-    </Card>
+          <TextField
+            required
+            id="address"
+            label="Address"
+            variant="outlined"
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+          />
+
+  <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 1 }}>
+    <input
+      accept="image/*"
+      id="upload-photo"
+      type="file"
+      style={{ display: "none" }}
+      onChange={handleFileChange}
+    />
+    <label htmlFor="upload-photo">
+      <Button variant="outlined" component="span">
+        Choose File
+      </Button>
+    </label>
+
+    {photo && (
+      <Avatar
+        src={`data:image/jpeg;base64,${photo}`}
+        sx={{ width: 56, height: 56 }}
+      />
+    )}
+  </Box>
+        </FormControl>
+
+        <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 4 }}>
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={isSaving}
+            size="large"
+          >
+            Save
+          </Button>
+        </Box>
+      </Card>
     </Box>
   );
 }

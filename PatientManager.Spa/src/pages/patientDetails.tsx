@@ -53,8 +53,7 @@ function PatientDetailsPage() {
         <CardContent>
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
             <Avatar
-              alt={patient.fullName}
-              src={patient.imagePath || undefined}
+              src={patient.photo}
               sx={{ width: 80, height: 80, fontSize: 32 }}
             >
               {patient.fullName[0]}
