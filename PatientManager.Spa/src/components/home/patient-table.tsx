@@ -1,0 +1,70 @@
+import {
+  Avatar,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Typography,
+  Box,
+  Button
+} from '@mui/material';
+import type { Patient } from '../../types/patient';
+import { useNavigate } from 'react-router';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { PatientTableEmpty } from './patient-table-empty';
+
+interface PatientsTableProps {
+  patients: Patient[]
+}
+
+export default function PatientsTable({patients}: PatientsTableProps) {  
+  const navigate = useNavigate();
+  return (
+    <Paper>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
+        <Typography variant="h6">Patient Overview</Typography>
+        <Button variant="contained" color="primary" onClick={() => navigate('/patient/new')}>
+          + New Patient
+        </Button>
+      </Box>
+      { patients.length === 0 ? <PatientTableEmpty /> :
+      <TableContainer component={Paper}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Patient</TableCell>
+            <TableCell>Address</TableCell>
+            <TableCell />
+          </TableRow>
+        </TableHead>
+        <TableBody>
+        {
+        patients.map((patient) => (
+          <TableRow
+            key={patient.id}
+            hover
+            onClick={() => navigate(`/patient/${patient.id}`)}
+            sx={{ cursor: 'pointer' }}
+          >
+            <TableCell>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Avatar src={patient.imagePath} sx={{ mr: 2 }} />
+                <Typography>{patient.fullName}</Typography>
+              </Box>
+            </TableCell>
+            <TableCell>{patient.address}</TableCell>
+            <TableCell align="right">
+              <ArrowForwardIosIcon />
+            </TableCell>
+          </TableRow>
+        ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+      }
+    </Paper>
+  )
+}
