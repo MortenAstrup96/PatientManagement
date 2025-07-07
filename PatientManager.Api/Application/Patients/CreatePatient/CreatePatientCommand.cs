@@ -2,4 +2,4 @@
 using Domain;
 
 namespace Application.Patients.CreatePatient;
-public record CreatePatientCommand(string Name, string Address) : ICommand<Patient>;
+public record CreatePatientCommand(string FullName, string Address) : ICommand<Patient>;
