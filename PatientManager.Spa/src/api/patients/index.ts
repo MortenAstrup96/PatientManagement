@@ -1,6 +1,6 @@
 // src/api/patients.ts
 
-import type { Patient } from "../../types/patient";
+import type { Patient } from "../../types/dataTypes";
 
 const API_BASE = `/api/patients`;
 const patientsCache: Record<string, Patient> = {};
@@ -13,7 +13,7 @@ export async function getAllPatients(): Promise<Patient[]> {
 
 export async function getPatientById(id: string): Promise<Patient> {
   if(patientsCache[id]) return patientsCache[id];
-  
+
   const res = await fetch(`${API_BASE}/${id}`);
   if (!res.ok) throw new Error('Patient not found');
   const patient = await res.json() as Patient;

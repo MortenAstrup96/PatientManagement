@@ -11,7 +11,7 @@ import {
   Box,
   Button
 } from '@mui/material';
-import type { Patient } from '../../types/patient';
+import type { Patient } from '../../types/dataTypes';
 import { useNavigate } from 'react-router';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { PatientTableEmpty } from './patient-table-empty';

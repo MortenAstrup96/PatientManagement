@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import PatientTable from "../components/home/patient-table"
-import type { Patient } from "../types/patient";
+import type { Patient } from "../types/dataTypes";
 import { getAllPatients } from "../api/patients";
 
 function HomePage() {

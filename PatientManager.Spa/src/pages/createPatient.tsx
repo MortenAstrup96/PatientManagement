@@ -1,4 +1,4 @@
-import { Paper, FormControl, TextField, Box, Button, InputLabel, Input, Typography } from "@mui/material";
+import { Paper, FormControl, TextField, Box, Button, InputLabel, Input, Typography, Card } from "@mui/material";
 import { useState } from "react";
 import { createPatient } from "../api/patients";
 import { useNavigate } from "react-router";
@@ -26,12 +26,13 @@ function CreatePatientPage() {
   };
 
   return (
-    <Paper
+      <Box sx={{ px: 18, py: 6 }}>
+    <Card
       component="form"
       onSubmit={handleSubmit}
       sx={{
-        py: 6,
-        px: 24,
+        py: 4,
+        px: 8,
         minHeight: '60vh',
         display: 'flex',
         flexDirection: 'column',
@@ -71,11 +72,12 @@ function CreatePatientPage() {
       </FormControl>
 
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 4 }}>
-        <Button type="submit" variant="contained" loading={isSaving}>
+        <Button type="submit" variant="contained" loading={isSaving} size="large">
           Save
         </Button>
       </Box>
-    </Paper>
+    </Card>
+    </Box>
   );
 }
 

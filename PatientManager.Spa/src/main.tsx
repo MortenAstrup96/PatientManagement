@@ -8,6 +8,7 @@ import HomePage from './pages/home.tsx'
 import PatientDetailsPage from './pages/patientDetails.tsx'
 import CreatePatientPage from './pages/createPatient.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import CreateAppointmentPage from './pages/createAppointments.tsx'
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
@@ -21,6 +22,7 @@ createRoot(document.getElementById('root')!).render(
               <Route index element={<HomePage />} />
               <Route path="patient/:patientId" element={<PatientDetailsPage />} />
               <Route path="patient/new" element={<CreatePatientPage />} />
+              <Route path="patient/:patientId/appointments/new" element={<CreateAppointmentPage />} />
             </Route>
           </Routes>    
         </ThemeProvider>
