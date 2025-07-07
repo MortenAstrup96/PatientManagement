@@ -23,13 +23,14 @@ interface PatientsTableProps {
 export default function PatientsTable({patients}: PatientsTableProps) {  
   const navigate = useNavigate();
   return (
-    <Paper>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
+    <Box sx={{ px: 12, py: 6 }}>
+      <Box sx={{display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1}}>
         <Typography variant="h6">Patient Overview</Typography>
-        <Button variant="contained" color="primary" onClick={() => navigate('/patient/new')}>
+        <Button variant="outlined" color="secondary" onClick={() => navigate('/patient/new')}>
           + New Patient
         </Button>
       </Box>
+
       { patients.length === 0 ? <PatientTableEmpty /> :
       <TableContainer component={Paper}>
       <Table>
@@ -65,6 +66,6 @@ export default function PatientsTable({patients}: PatientsTableProps) {
       </Table>
     </TableContainer>
       }
-    </Paper>
+    </Box>
   )
 }

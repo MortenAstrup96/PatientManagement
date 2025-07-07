@@ -10,6 +10,6 @@ export const theme = createTheme({
     },
     background: {
       default: '#f5f8fa',  
-    },
+    }
   },
 });

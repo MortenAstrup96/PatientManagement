@@ -10,12 +10,11 @@ export default function Navbar() {
   return (
       <AppBar >
         <Toolbar>
-          <Button variant="text" onClick={() => navigate("/")}>            
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Button variant="text" color="inherit" onClick={() => navigate("/")}>            
+            <Typography variant="h6" sx={{ flexGrow: 1 }}>
               Patient Management System
             </Typography>
           </Button>
-          <Button color="inherit">Settings</Button>
         </Toolbar>
       </AppBar>
   );

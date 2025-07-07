@@ -1,7 +1,6 @@
 import { Paper, TextField, Button, FormControl, Typography, Box, MenuItem, Select, InputLabel } from "@mui/material";
 import { useNavigate, useParams } from "react-router";
 import { createAppointment } from "../api/appointments";
-import { useState } from "react";
 import type { AppointmentType } from "../types/dataTypes";
 import { minutesToTimespan } from "../util/utilities";
 

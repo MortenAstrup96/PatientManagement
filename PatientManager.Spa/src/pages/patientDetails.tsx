@@ -71,7 +71,7 @@ function PatientDetailsPage() {
 
       <Box sx={{display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1}}>
         <Typography variant="h6" sx={{mr: 2}}>Appointments</Typography>
-        <Button variant="contained" color="secondary" onClick={() => navigate(`/patient/${patientId}/appointments/new`)}>+ New</Button>
+        <Button variant="outlined" color="secondary" onClick={() => navigate(`/patient/${patientId}/appointments/new`)}>+ New</Button>
       </Box>
 
       <Card>
