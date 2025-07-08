@@ -6,7 +6,7 @@ export function Layout() {
   return (
     <div>
       <Navbar/>
-      <Container sx={{ mt: 10 }}>
+      <Container sx={{ mt: 12 }}>
         <Outlet />
       </Container>
     </div>

@@ -18,6 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import { getPatientAppointments } from "../api/appointments";
+import ContentBox from "../components/shared/ContentBox";
 
 function PatientDetailsPage() {
   const { patientId } = useParams();
@@ -38,9 +39,7 @@ function PatientDetailsPage() {
         .catch((err) => console.error(err));
     };
 
-    fetchData();
-
-      
+    fetchData();      
   }, [patientId]);
 
   if (!patient) {
@@ -48,14 +47,14 @@ function PatientDetailsPage() {
   }
 
   return (
-    <Box sx={{ px: 12, py: 6 }}>
+  <>
+    <Box sx={{ px: 12, pt: 2 }}>
       <Card sx={{ mb: 4 }}>
         <CardContent>
           <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
             <Avatar
               src={patient.photo}
-              sx={{ width: 80, height: 80, fontSize: 32 }}
-            >
+              sx={{ width: 80, height: 80, fontSize: 32 }}>
               {patient.fullName[0]}
             </Avatar>
             <Box>
@@ -68,47 +67,41 @@ function PatientDetailsPage() {
           </Box>
         </CardContent>
       </Card>
-
-      <Box sx={{display: "flex", alignItems: "center", justifyContent: "space-between", mb: 1}}>
-        <Typography variant="h6" sx={{mr: 2}}>Appointments</Typography>
-        <Button variant="outlined" color="secondary" onClick={() => navigate(`/patient/${patientId}/appointments/new`)}>+ New</Button>
-      </Box>
-
-      <Card>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Type</TableCell>
-              <TableCell>Dentist</TableCell>
-              <TableCell>Duration</TableCell>
-              <TableCell>Date</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {appointments.length > 0 ?
-            appointments.map(appointment => {
-              return(
-              <TableRow>
-                <TableCell>{appointment.appointmentType}</TableCell>
-                <TableCell>{appointment.dentist}</TableCell>
-                <TableCell>{appointment.duration}</TableCell>
-                <TableCell>{appointment.startTime}</TableCell>
-              </TableRow>
-            )
-
-            })
-            :
-            <TableRow>
-              <TableCell colSpan={4}>
-                <Typography align="center" color="text.secondary">
-                  No appointments yet.
-                </Typography>
-              </TableCell>
-            </TableRow>}
-          </TableBody>
-        </Table>
-      </Card>
     </Box>
+
+    <ContentBox title='Appointments' showActionButton actionButtonLabel='+ Appointment' onActionButtonClick={() => navigate(`/patient/${patientId}/appointments/new`)}>
+    <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Type</TableCell>
+            <TableCell>Dentist</TableCell>
+            <TableCell>Duration</TableCell>
+            <TableCell>Date</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {appointments.length > 0 ?
+          appointments.map(appointment => {
+            return(
+            <TableRow>
+              <TableCell>{appointment.appointmentType}</TableCell>
+              <TableCell>{appointment.dentist}</TableCell>
+              <TableCell>{appointment.duration}</TableCell>
+              <TableCell>{appointment.startTime}</TableCell>
+            </TableRow>
+          )})
+          :
+          <TableRow>
+            <TableCell colSpan={4}>
+              <Typography align="center" color="text.secondary">
+                No appointments yet.
+              </Typography>
+            </TableCell>
+          </TableRow>}
+        </TableBody>
+      </Table>
+    </ContentBox>
+  </>
   );
 }
 

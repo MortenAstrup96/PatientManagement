@@ -3,13 +3,12 @@ import {
   TextField,
   Box,
   Button,
-  Typography,
-  Card,
   Avatar,
 } from "@mui/material";
 import { useState } from "react";
 import { createPatient } from "../api/patients";
 import { useNavigate } from "react-router";
+import ContentBox from "../components/shared/ContentBox";
 
 function CreatePatientPage() {
   const navigate = useNavigate();
@@ -39,75 +38,54 @@ function CreatePatientPage() {
   };
 
   return (
-    <Box sx={{ px: 18, py: 6 }}>
-      <Card
+    <ContentBox title='Create Patient'>
+      <FormControl 
+        fullWidth 
         component="form"
         onSubmit={handleSubmit}
-        sx={{
-          py: 4,
-          px: 8,
-          minHeight: "60vh",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-        }}
-      >
-        <FormControl fullWidth sx={{ gap: 3 }}>
-          <Typography variant="h6">Create New Patient</Typography>
+        sx={{ gap: 3, p: 4}}>
+        <TextField
+          required
+          id="fullname"
+          label="Full Name"
+          variant="outlined"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}/>
+        <TextField
+          required
+          id="address"
+          label="Address"
+          variant="outlined"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}/>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 1 }}>
+          <input
+            accept="image/*"
+            id="upload-photo"
+            type="file"
+            style={{ display: "none" }}
+            onChange={handleFileChange}/>
+          <label htmlFor="upload-photo">
+            <Button variant="outlined" component="span" size="large" sx={{px: 4, py: 2}}>
+              Add Picture
+            </Button>
+          </label>
 
-          <TextField
-            required
-            id="fullname"
-            label="Full Name"
-            variant="outlined"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-
-          <TextField
-            required
-            id="address"
-            label="Address"
-            variant="outlined"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-
-  <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 1 }}>
-    <input
-      accept="image/*"
-      id="upload-photo"
-      type="file"
-      style={{ display: "none" }}
-      onChange={handleFileChange}
-    />
-    <label htmlFor="upload-photo">
-      <Button variant="outlined" component="span">
-        Choose File
-      </Button>
-    </label>
-
-    {photo && (
-      <Avatar
-        src={`data:image/jpeg;base64,${photo}`}
-        sx={{ width: 56, height: 56 }}
-      />
-    )}
-  </Box>
-        </FormControl>
-
+        <Avatar src={`data:image/jpeg;base64,${photo}`} sx={{ width: 56, height: 56 }}/>
+        </Box>
         <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 4 }}>
           <Button
             type="submit"
             variant="contained"
             disabled={isSaving}
-            size="large"
-          >
-            Save
+            color="secondary"
+            size="large">
+            Add Patient
           </Button>
         </Box>
-      </Card>
-    </Box>
+      </FormControl>
+    </ContentBox>
+
   );
 }
 
