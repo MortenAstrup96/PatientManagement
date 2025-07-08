@@ -38,15 +38,15 @@ The homepage shows all the patients that have already been added. If empty, the 
 
 ### Patient Details
 The Patient Details page displays basics such as a profile picture, name and address. Additionally it will show current appointments and allow the user to add additional appointments.
-![patient-details](https://github.com/user-attachments/assets/fdf47110-3938-467b-826d-325c8f5edc64)
+![patient-details](https://github.com/user-attachments/assets/0a5d17c8-0b1d-4b03-8481-26b137daaeb1)
 
 ### Create Patient
 Create patient page allows creating a new patient with a name, address and an image uploaded from the computer.
-![create-patient](https://github.com/user-attachments/assets/4768e781-e2a3-49bb-939d-bb9f8b0a7d6a)
+![create-patient](https://github.com/user-attachments/assets/edb3cf33-ba5a-40af-ab16-de5077b02ab0)
 
 ### Create Appointment
 New appointments can be made. Some default values are already prefilled.
-![create-appointment](https://github.com/user-attachments/assets/6690e4bc-4e8a-422d-b9dd-779267c901ae)
+![create-appointment](https://github.com/user-attachments/assets/2db885f3-3037-4df6-8752-6fc992f7d2a7)
 
 ---
 
