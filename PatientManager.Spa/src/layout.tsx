@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router';
-import Navbar from './components/shared/navbar';
+import Navbar from './components/shared/Navbar';
 import { Container } from '@mui/material';
 
 export function Layout() {

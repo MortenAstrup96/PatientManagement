@@ -4,11 +4,11 @@ import { BrowserRouter, Route, Routes } from 'react-router'
 import { Layout } from './layout.tsx'
 import { CssBaseline, ThemeProvider } from '@mui/material'
 import { theme } from './util/themeprovider.ts'
-import HomePage from './pages/home.tsx'
-import PatientDetailsPage from './pages/patientDetails.tsx'
-import CreatePatientPage from './pages/createPatient.tsx'
+import HomePage from './pages/HomePage.tsx'
+import PatientDetailsPage from './pages/PatientDetailsPage.tsx'
+import CreatePatientPage from './pages/CreatePatientPage.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import CreateAppointmentPage from './pages/createAppointments.tsx'
+import CreateAppointmentPage from './pages/CreateAppointmentPage.tsx'
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(

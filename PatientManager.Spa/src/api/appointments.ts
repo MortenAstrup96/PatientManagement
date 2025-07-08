@@ -1,6 +1,6 @@
 // src/api/patients.ts
 
-import type { Appointment } from "../../types/dataTypes";
+import type { Appointment } from "../types/dataTypes";
 
 const API_BASE = `/api/appointments`;
 

@@ -1,6 +1,6 @@
 // src/api/patients.ts
 
-import type { Patient } from "../../types/dataTypes";
+import type { Patient } from "../types/dataTypes";
 
 const API_BASE = `/api/patients`;
 const patientsCache: Record<string, Patient> = {};
