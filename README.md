@@ -34,15 +34,19 @@ npm run dev
 There are 4 pages in total. Each page follow a consistent design as a card with a title and sometimes an action button above the card.
 ### Home
 The homepage shows all the patients that have already been added. If empty, the homepage will have an empty state.
+![home](https://github.com/user-attachments/assets/3715bc5f-15d2-442d-a44d-d698f33706e7)
 
 ### Patient Details
 The Patient Details page displays basics such as a profile picture, name and address. Additionally it will show current appointments and allow the user to add additional appointments.
+![patient-details](https://github.com/user-attachments/assets/fdf47110-3938-467b-826d-325c8f5edc64)
 
 ### Create Patient
 Create patient page allows creating a new patient with a name, address and an image uploaded from the computer.
+![create-patient](https://github.com/user-attachments/assets/4768e781-e2a3-49bb-939d-bb9f8b0a7d6a)
 
 ### Create Appointment
 New appointments can be made. Some default values are already prefilled.
+![create-appointment](https://github.com/user-attachments/assets/6690e4bc-4e8a-422d-b9dd-779267c901ae)
 
 ---
 
