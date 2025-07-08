@@ -39,39 +39,34 @@ function CreatePatientPage() {
 
   return (
     <ContentBox title='Create Patient'>
-      <FormControl 
-        fullWidth 
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{ gap: 3, p: 4}}>
+      <FormControl fullWidth component="form" onSubmit={handleSubmit} sx={{ gap: 3, p: 4 }}>
         <TextField
           required
           id="fullname"
           label="Full Name"
           variant="outlined"
           value={fullName}
-          onChange={(e) => setFullName(e.target.value)}/>
+          onChange={(e) => setFullName(e.target.value)} />
         <TextField
           required
           id="address"
           label="Address"
           variant="outlined"
           value={address}
-          onChange={(e) => setAddress(e.target.value)}/>
+          onChange={(e) => setAddress(e.target.value)} />
         <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 1 }}>
           <input
             accept="image/*"
             id="upload-photo"
             type="file"
             style={{ display: "none" }}
-            onChange={handleFileChange}/>
+            onChange={handleFileChange} />
           <label htmlFor="upload-photo">
-            <Button variant="outlined" component="span" size="large" sx={{px: 4, py: 2}}>
+            <Button variant="outlined" component="span" size="large" sx={{ px: 4, py: 2 }}>
               Add Picture
             </Button>
           </label>
-
-        <Avatar src={`data:image/jpeg;base64,${photo}`} sx={{ width: 56, height: 56 }}/>
+          <Avatar src={`data:image/jpeg;base64,${photo}`} sx={{ width: 56, height: 56 }} />
         </Box>
         <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 4 }}>
           <Button

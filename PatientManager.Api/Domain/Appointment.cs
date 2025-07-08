@@ -1,5 +1,10 @@
 ﻿
 namespace Domain;
+
+/// <summary>
+/// I would have liked to enforce more domain level rules here. Currently, for example
+/// Dentists can technically be null, but that would not work with the domain logic. 
+/// </summary>
 public class Appointment
 {
     public Guid Id { get; init; } = Guid.NewGuid();

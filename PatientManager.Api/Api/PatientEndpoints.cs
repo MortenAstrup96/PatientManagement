@@ -1,8 +1,6 @@
 ﻿namespace Api;
 
 using Api.Dto;
-using Application.Appointments.CreateAppointment;
-using Application.Appointments.GetPatientAppointments;
 using Application.Interfaces;
 using Application.Patients.CreatePatient;
 using Application.Patients.DeletePatient;
@@ -12,6 +10,9 @@ using Domain;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
+/// <summary>
+/// Patient Endpoints using Minimal APIs
+/// </summary>
 public static class PatientEndpoints
 {
     public static void MapPatientEndpoints(this IEndpointRouteBuilder app)
@@ -64,13 +65,14 @@ public static class PatientEndpoints
         var query = new GetPatientByIdQuery(id);
         var patient = await handler.Handle(query, ct);
 
+        if (patient is null) return Results.NotFound();
+
         var patientResponse = new PatientResponse(
             patient.Id, 
             patient.FullName, 
             patient.Address,
             "data:image/jpeg;base64,"+Convert.ToBase64String(patient.Photo));
-
-        return patient is not null ? Results.Ok(patientResponse) : Results.NotFound();
+        return Results.Ok(patientResponse);
     }
 }
 

@@ -8,8 +8,7 @@ import {
   TableRow,
   Typography,
   Box,
-  Button,
-  Card
+  Button
 } from '@mui/material';
 import { useNavigate } from 'react-router';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -24,17 +23,17 @@ export default function PatientsTable({ patients }: PatientsTableProps) {
   const navigate = useNavigate();
 
   const createEmptyTable = () => (
-      <Box sx={{textAlign: 'center', color: 'text.secondary'}}>
-        <InfoOutlineIcon sx={{ fontSize: 80, mb: 2 }} />
-        <Typography variant="h6" gutterBottom>No patients found</Typography>
-        <Typography variant="body1" sx={{ mb: 4 }}>You haven't added any patients yet. Click below to get started.</Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => navigate('/patient/new')}>
-          + New Patient
-        </Button>
-      </Box>
+    <Box sx={{ textAlign: 'center', color: 'text.secondary', py: 6}}>
+      <InfoOutlineIcon sx={{ fontSize: 80, mb: 2 }} />
+      <Typography variant="h6" gutterBottom>No patients found</Typography>
+      <Typography variant="body1" sx={{ mb: 4 }}>You haven't added any patients yet. Click below to get started.</Typography>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => navigate('/patient/new')}>
+        + New Patient
+      </Button>
+    </Box>
   );
 
   const createPatientTable = () => (
@@ -73,6 +72,6 @@ export default function PatientsTable({ patients }: PatientsTableProps) {
     </TableContainer>
   );
 
-  if(patients.length === 0) return createEmptyTable()
+  if (patients.length === 0) return createEmptyTable()
   return createPatientTable();
 }

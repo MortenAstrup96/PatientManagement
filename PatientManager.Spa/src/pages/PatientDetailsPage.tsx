@@ -23,7 +23,7 @@ import ContentBox from "../components/shared/ContentBox";
 function PatientDetailsPage() {
   const { patientId } = useParams();
   const navigate = useNavigate();
-  
+
   const [patient, setPatient] = useState<Patient | null>(null);
   const [appointments, setAppointments] = useState<Appointment[]>([]);
 
@@ -39,7 +39,7 @@ function PatientDetailsPage() {
         .catch((err) => console.error(err));
     };
 
-    fetchData();      
+    fetchData();
   }, [patientId]);
 
   if (!patient) {
@@ -47,61 +47,60 @@ function PatientDetailsPage() {
   }
 
   return (
-  <>
-    <Box sx={{ px: 12, pt: 2 }}>
-      <Card sx={{ mb: 4 }}>
-        <CardContent>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
-            <Avatar
-              src={patient.photo}
-              sx={{ width: 80, height: 80, fontSize: 32 }}>
-              {patient.fullName[0]}
-            </Avatar>
-            <Box>
-              <Typography variant="h5">{patient.fullName}</Typography>
-              <Typography color="text.secondary">{patient.address}</Typography>
-              <Typography color="text.disabled" fontSize={12}>
-                ID: {patient.id}
-              </Typography>
+    <>
+      <Box sx={{ px: 12, pt: 2 }}>
+        <Card sx={{ mb: 4 }}>
+          <CardContent>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+              <Avatar
+                src={patient.photo}
+                sx={{ width: 80, height: 80 }}>
+                {patient.fullName[0]}
+              </Avatar>
+              <Box>
+                <Typography variant="h5">{patient.fullName}</Typography>
+                <Typography color="gray">{patient.address}</Typography>
+              </Box>
             </Box>
-          </Box>
-        </CardContent>
-      </Card>
-    </Box>
+          </CardContent>
+        </Card>
+      </Box>
 
-    <ContentBox title='Appointments' showActionButton actionButtonLabel='+ Appointment' onActionButtonClick={() => navigate(`/patient/${patientId}/appointments/new`)}>
-    <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell>Type</TableCell>
-            <TableCell>Dentist</TableCell>
-            <TableCell>Duration</TableCell>
-            <TableCell>Date</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {appointments.length > 0 ?
-          appointments.map(appointment => {
-            return(
+      <ContentBox title='Appointments' showActionButton actionButtonLabel='+ Appointment'
+        onActionButtonClick={() => navigate(`/patient/${patientId}/appointments/new`)}>
+        <Table>
+          <TableHead>
             <TableRow>
-              <TableCell>{appointment.appointmentType}</TableCell>
-              <TableCell>{appointment.dentist}</TableCell>
-              <TableCell>{appointment.duration}</TableCell>
-              <TableCell>{appointment.startTime}</TableCell>
+              <TableCell>Type</TableCell>
+              <TableCell>Dentist</TableCell>
+              <TableCell>Duration</TableCell>
+              <TableCell>Date</TableCell>
             </TableRow>
-          )})
-          :
-          <TableRow>
-            <TableCell colSpan={4}>
-              <Typography align="center" color="text.secondary">
-                No appointments yet.
-              </Typography>
-            </TableCell>
-          </TableRow>}
-        </TableBody>
-      </Table>
-    </ContentBox>
-  </>
+          </TableHead>
+          <TableBody>
+            {appointments.length > 0 ?
+              appointments.map(appointment => {
+                return (
+                  <TableRow>
+                    <TableCell>{appointment.appointmentType}</TableCell>
+                    <TableCell>{appointment.dentist}</TableCell>
+                    <TableCell>{appointment.duration}</TableCell>
+                    <TableCell>{appointment.startTime}</TableCell>
+                  </TableRow>
+                )
+              })
+              :
+              <TableRow>
+                <TableCell colSpan={4}>
+                  <Typography align="center" color="text.secondary">
+                    No appointments yet.
+                  </Typography>
+                </TableCell>
+              </TableRow>}
+          </TableBody>
+        </Table>
+      </ContentBox>
+    </>
   );
 }
 
