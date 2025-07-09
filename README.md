@@ -15,7 +15,7 @@ A simple web application where you can create patients and manage their appointm
 2. Start the backend
 
 ```bash
-cd PatientManager.Api
+cd PatientManager.Api/Api
 dotnet run
 ```
 
