@@ -1,4 +1,4 @@
-import { Paper, TextField, Button, FormControl, Typography, Box, MenuItem, Select, InputLabel } from "@mui/material";
+import { TextField, Button, FormControl, Box, MenuItem, Select } from "@mui/material";
 import { useNavigate, useParams } from "react-router";
 import { createAppointment } from "../api/appointments";
 import type { AppointmentType } from "../types/dataTypes";

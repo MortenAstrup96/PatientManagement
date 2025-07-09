@@ -6,7 +6,6 @@ import type { Appointment, Patient } from "../types/dataTypes";
 import {
   Avatar,
   Box,
-  Button,
   Card,
   CardContent,
   Skeleton,
