@@ -13,7 +13,7 @@ interface ContainerProps {
 export default function ContentBox(props: ContainerProps) {
 
   const renderActionButton = () => {
-    if(props.showActionButton) {
+    if (props.showActionButton) {
       return <Button variant="outlined" color="secondary" onClick={props.onActionButtonClick}>{props.actionButtonLabel}</Button>
     }
   }
