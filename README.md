@@ -62,3 +62,7 @@ These are some features and best practices I would like to implement if I had mo
 ### Frontend
 - I was going to put a lot of focus on state management, but ended up with keeping track of state with useState/useEffect as well as one custom hook for patients.
     - I was planning to use Context API but never found the need since I not did any prop drilling.
+    - In a larger project Redux or something else would be ideal.
+- Generate Types from .NET: It is possible to generate Types from the swagger file coming from the .NET APIs, which would increase consistency and reduce manual work.
+- Better data fetching and handling: Currently we just have a data fetching service for patients/appointments. For larger projects a better library like React Query would work well as it removes a lot of complexity such as errorhandling and caching.
+- Error dialogs: A quick popup on error would be nice feedback.
